@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.className += " js";</script>
+<title>NT Greek (By Freq or Chap) — Tag Guide for Anki</title>
+<style>
+  :root {
+    --bg: #fbfaf7;
+    --fg: #23211d;
+    --muted: #6b665d;
+    --accent: #7a3e1d;
+    --accent-soft: #f1e6dc;
+    --border: #ddd6ca;
+    --code-bg: #f3efe7;
+    --code-fg: #2d2a25;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1917;
+      --fg: #e9e5dc;
+      --muted: #a29b8d;
+      --accent: #e0a172;
+      --accent-soft: #2b241e;
+      --border: #3a362f;
+      --code-bg: #24221f;
+      --code-fg: #eadfcf;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 17px/1.65 Georgia, "Iowan Old Style", "Palatino Linotype", "Times New Roman", serif;
+  }
+  main { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+  h1, h2, h3 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.25; }
+  h1 { font-size: 2rem; margin: 0 0 .4rem; }
+  h2 { font-size: 1.4rem; margin: 2.8rem 0 .8rem; padding-top: .4rem; border-top: 1px solid var(--border); }
+  h3 { font-size: 1.1rem; margin: 1.8rem 0 .4rem; }
+  p { margin: .7rem 0; }
+  a { color: var(--accent); }
+  .lede { color: var(--muted); font-size: 1.1rem; margin-top: 0; }
+  .greek { font-family: "Palatino Linotype", "Times New Roman", "Gentium Plus", serif; }
+  nav.toc {
+    background: var(--accent-soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: .9rem 1.2rem;
+    margin: 1.6rem 0 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: .95rem;
+  }
+  nav.toc strong { display: block; margin-bottom: .3rem; }
+  nav.toc ol { margin: 0; padding-left: 1.2rem; columns: 2; column-gap: 2rem; }
+  @media (max-width: 560px) { nav.toc ol { columns: 1; } }
+  code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+  code { background: var(--code-bg); color: var(--code-fg); padding: .1em .35em; border-radius: 4px; font-size: .88em; }
+  pre {
+    position: relative;
+    background: var(--code-bg);
+    color: var(--code-fg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: .8rem 4.6rem .8rem .9rem;
+    margin: .6rem 0 1rem;
+    font-size: .85rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  pre code { background: none; padding: 0; font-size: inherit; }
+  button.copy {
+    position: absolute; top: .45rem; right: .45rem;
+    font: 600 .72rem/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--accent);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: .35rem .55rem;
+    cursor: pointer;
+  }
+  button.copy:hover { border-color: var(--accent); }
+  .table-wrap { overflow-x: auto; margin: .8rem 0 1.2rem; }
+  table { border-collapse: collapse; width: 100%; font-size: .93rem; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  th, td { text-align: left; padding: .5rem .7rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: var(--accent-soft); font-weight: 600; white-space: nowrap; }
+  td code { white-space: nowrap; }
+  .note {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-soft);
+    padding: .6rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0;
+    font-size: .96rem;
+  }
+  .note p { margin: .3rem 0; }
+  .anatomy code { font-size: .95rem; }
+  .part-a { color: #b04a1c; font-weight: 700; }
+  .part-b { color: #1c6ab0; font-weight: 700; }
+  .part-c { color: #2f8a4a; font-weight: 700; }
+  @media (prefers-color-scheme: dark) {
+    .part-a { color: #f0a06f; } .part-b { color: #79b4ee; } .part-c { color: #7dcf96; }
+  }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); color: var(--muted); font-size: .9rem; }
+
+  /* ---- tabs ---- */
+  [hidden] { display: none !important; }
+  .tabs { display: none; gap: .3rem; margin: 1.6rem 0 0; border-bottom: 2px solid var(--border); }
+  .js .tabs { display: flex; }
+  .tabs button {
+    font: 600 .95rem/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--muted); background: none; border: 0; border-bottom: 3px solid transparent;
+    margin-bottom: -2px; padding: .75rem 1.1rem; cursor: pointer;
+  }
+  .tabs button:hover { color: var(--fg); }
+  .tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+  .panel > h2:first-child { border-top: 0; margin-top: 1.6rem; }
+  /* ---- filtered deck tables ---- */
+  .deck-table th:first-child { width: 36%; }
+  .deck-table td code { white-space: normal; word-break: break-word; }
+  .deck-table .copy { position: static; margin-left: .5rem; vertical-align: middle; user-select: none; }
+  .deck-table tr.group th { background: var(--accent-soft); color: var(--accent); }
+  .deck-table tr.group th span { color: var(--muted); font-weight: 400; margin-left: .4rem; }
+  #deck-filter {
+    width: 100%; max-width: 28rem; padding: .55rem .8rem; font: inherit; font-size: .95rem;
+    color: var(--fg); background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+<main>
+
+<h1>NT Greek (By Freq or Chap)</h1>
+<p class="lede">A guide to the tags in this Anki deck — how to find, group, and study New Testament Greek vocabulary by <em>how often</em> a word occurs or by <em>where</em> it occurs.</p>
+
+<div class="tabs" role="tablist" aria-label="Sections">
+  <button type="button" role="tab" id="tab-guide" data-panel="guide" aria-controls="guide" aria-selected="true">Tag guide</button>
+  <button type="button" role="tab" id="tab-decks" data-panel="deck-names" aria-controls="deck-names" aria-selected="false">Filtered decks</button>
+</div>
+
+<section id="guide" class="panel" role="tabpanel" aria-labelledby="tab-guide">
+
+<nav class="toc" aria-label="Contents">
+  <strong>Contents</strong>
+  <ol>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#frequency">Frequency tags</a></li>
+    <li><a href="#chapters">Chapter tags</a></li>
+    <li><a href="#pos">Part-of-speech tags</a></li>
+    <li><a href="#searching">Searching with tags</a></li>
+    <li><a href="#recipes">Search recipes</a></li>
+    <li><a href="#filtered">Studying with filtered decks</a></li>
+    <li><a href="#tips">Tips and cautions</a></li>
+  </ol>
+</nav>
+
+<h2 id="overview">1. Overview</h2>
+<p>Each card in this deck is one Greek lemma (dictionary form). Every note uses the <strong>Greek NT Vocab</strong> note type and carries tags in a single hierarchy that begins with <code>GNT::</code> (Greek New Testament). Two tag families are the heart of the deck:</p>
+<ul>
+  <li><strong>Frequency tags</strong> (<code>GNT::freq::…</code>) — how many times the lemma occurs in the New Testament. One per note.</li>
+  <li><strong>Chapter tags</strong> (<code>GNT::Book::…</code>) — every New Testament chapter in which the lemma appears. One or many per note.</li>
+</ul>
+<p>A third family, <a href="#pos">part-of-speech tags</a> (<code>GNT::POS::…</code>), is also included.</p>
+
+<h3>What a tagged note looks like</h3>
+<p>The proper noun <span class="greek" lang="grc">Γάϊος, -ου, ὁ</span> (Gaius) occurs five times in the New Testament, so it carries the frequency tag for “5”. Those five occurrences are spread across five chapters, so it carries five chapter tags:</p>
+<pre><code>GNT::freq::G:5
+GNT::Book::12:Rom::16
+GNT::Book::17:1Co::01
+GNT::Book::26:Ac::19
+GNT::Book::26:Ac::20
+GNT::Book::03:3J::01
+GNT::POS::ProperNoun</code></pre>
+<p>A word that occurs only once (a <em>hapax legomenon</em>) has exactly one chapter tag. A very common word such as the article has a great many.</p>
+
+<h3>Note fields</h3>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Field</th><th>Contents</th></tr></thead>
+  <tbody>
+    <tr><td><code>headword</code></td><td>The lemma, with its endings/article as appropriate (e.g. <span class="greek" lang="grc">Γεννησαρέτ, ἡ</span>)</td></tr>
+    <tr><td><code>gloss</code></td><td>English meaning</td></tr>
+    <tr><td><code>passage</code></td><td>Example verse(s) with the word highlighted (present on some notes)</td></tr>
+    <tr><td><code>audio</code></td><td>Pronunciation audio</td></tr>
+    <tr><td><code>partofspeech</code></td><td>Part of speech, as text</td></tr>
+    <tr><td><code>frequency</code></td><td>The occurrence count, as text (the same information the frequency tag carries)</td></tr>
+  </tbody>
+</table>
+</div>
+
+
+<h2 id="frequency">2. Frequency tags</h2>
+<p>Frequency tags group lemmas into eleven tiers by number of occurrences in the New Testament. Every note has one.</p>
+
+<p class="anatomy">Anatomy of a frequency tag: <code><span class="part-a">GNT</span>::<span class="part-b">freq</span>::<span class="part-c">A:50+</span></code> — the root, the tag family, then a letter and the occurrence range.</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Tag</th><th>Tier</th><th>Occurrences in the NT</th></tr></thead>
+  <tbody>
+    <tr><td><code>GNT::freq::A:50+</code></td><td>A</td><td>50 or more</td></tr>
+    <tr><td><code>GNT::freq::B:49-20</code></td><td>B</td><td>20 – 49</td></tr>
+    <tr><td><code>GNT::freq::C:19-13</code></td><td>C</td><td>13 – 19</td></tr>
+    <tr><td><code>GNT::freq::D:12-10</code></td><td>D</td><td>10 – 12</td></tr>
+    <tr><td><code>GNT::freq::E:9-8</code></td><td>E</td><td>8 – 9</td></tr>
+    <tr><td><code>GNT::freq::F:7-6</code></td><td>F</td><td>6 – 7</td></tr>
+    <tr><td><code>GNT::freq::G:5</code></td><td>G</td><td>exactly 5</td></tr>
+    <tr><td><code>GNT::freq::H:4</code></td><td>H</td><td>exactly 4</td></tr>
+    <tr><td><code>GNT::freq::I:3</code></td><td>I</td><td>exactly 3</td></tr>
+    <tr><td><code>GNT::freq::J:2</code></td><td>J</td><td>exactly 2</td></tr>
+    <tr><td><code>GNT::freq::K:1</code></td><td>K</td><td>exactly 1 (hapax legomena)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="note">
+  <p><strong>Why the letters?</strong> Anki sorts tags alphabetically, so the letter prefix keeps the tiers in order from most frequent (A) to least frequent (K) in the browser sidebar and in tag lists.</p>
+</div>
+
+<p>Because the tiers use ranges, you can pick a cut-off that suits your level. For example, tiers A–D together are “every word that occurs 10 or more times”.</p>
+
+
+<h2 id="chapters">3. Chapter tags</h2>
+<p>Chapter tags record <em>where</em> a lemma occurs. Every New Testament chapter has its own tag — 260 in all — and a note is tagged with every chapter in which its lemma appears at least once.</p>
+
+<p class="anatomy">Anatomy of a chapter tag: <code><span class="part-a">GNT::Book</span>::<span class="part-b">04:Jn</span>::<span class="part-c">03</span></code> — the tag family, then a book code, then a two-digit chapter number. This one is John 3.</p>
+
+<div class="note">
+  <p><strong>The number in the book code is a study order, not the Bible order.</strong> Books are numbered 01–27 in the order the deck was built (for example 1 John is <code>01</code>, Matthew is <code>11</code>, Acts is <code>26</code>). Use the table below to look up any book.</p>
+  <p><strong>A chapter tag says a word appears in that chapter, not how many times.</strong> Searching a chapter tag returns every lemma that occurs there at least once, common or rare.</p>
+</div>
+
+<h3>Book codes</h3>
+<p>Search a whole book by using the book tag without a chapter (e.g. <code>GNT::Book::04:Jn</code>). Search a single chapter by adding <code>::</code> and the two-digit chapter (e.g. <code>GNT::Book::04:Jn::03</code>).</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Book tag</th><th>Book</th><th>Chapters</th></tr></thead>
+  <tbody>
+    <tr><td><code>GNT::Book::01:1J</code></td><td>1 John</td><td>1–5</td></tr>
+    <tr><td><code>GNT::Book::02:2J</code></td><td>2 John</td><td>1</td></tr>
+    <tr><td><code>GNT::Book::03:3J</code></td><td>3 John</td><td>1</td></tr>
+    <tr><td><code>GNT::Book::04:Jn</code></td><td>John</td><td>1–21</td></tr>
+    <tr><td><code>GNT::Book::05:Phlm</code></td><td>Philemon</td><td>1</td></tr>
+    <tr><td><code>GNT::Book::06:Rev</code></td><td>Revelation</td><td>1–22</td></tr>
+    <tr><td><code>GNT::Book::07:1Th</code></td><td>1 Thessalonians</td><td>1–5</td></tr>
+    <tr><td><code>GNT::Book::08:2Th</code></td><td>2 Thessalonians</td><td>1–3</td></tr>
+    <tr><td><code>GNT::Book::09:Php</code></td><td>Philippians</td><td>1–4</td></tr>
+    <tr><td><code>GNT::Book::10:Mk</code></td><td>Mark</td><td>1–16</td></tr>
+    <tr><td><code>GNT::Book::11:Mt</code></td><td>Matthew</td><td>1–28</td></tr>
+    <tr><td><code>GNT::Book::12:Rom</code></td><td>Romans</td><td>1–16</td></tr>
+    <tr><td><code>GNT::Book::13:Eph</code></td><td>Ephesians</td><td>1–6</td></tr>
+    <tr><td><code>GNT::Book::14:Col</code></td><td>Colossians</td><td>1–4</td></tr>
+    <tr><td><code>GNT::Book::15:Gal</code></td><td>Galatians</td><td>1–6</td></tr>
+    <tr><td><code>GNT::Book::16:Jas</code></td><td>James</td><td>1–5</td></tr>
+    <tr><td><code>GNT::Book::17:1Co</code></td><td>1 Corinthians</td><td>1–16</td></tr>
+    <tr><td><code>GNT::Book::18:2Co</code></td><td>2 Corinthians</td><td>1–13</td></tr>
+    <tr><td><code>GNT::Book::19:1Ti</code></td><td>1 Timothy</td><td>1–6</td></tr>
+    <tr><td><code>GNT::Book::20:2Ti</code></td><td>2 Timothy</td><td>1–4</td></tr>
+    <tr><td><code>GNT::Book::21:Tit</code></td><td>Titus</td><td>1–3</td></tr>
+    <tr><td><code>GNT::Book::22:1Pe</code></td><td>1 Peter</td><td>1–5</td></tr>
+    <tr><td><code>GNT::Book::23:2Pe</code></td><td>2 Peter</td><td>1–3</td></tr>
+    <tr><td><code>GNT::Book::24:Jud</code></td><td>Jude</td><td>1</td></tr>
+    <tr><td><code>GNT::Book::25:Lk</code></td><td>Luke</td><td>1–24</td></tr>
+    <tr><td><code>GNT::Book::26:Ac</code></td><td>Acts</td><td>1–28</td></tr>
+    <tr><td><code>GNT::Book::27:Heb</code></td><td>Hebrews</td><td>1–13</td></tr>
+  </tbody>
+</table>
+</div>
+
+
+<h2 id="pos">4. Part-of-speech tags</h2>
+<p>Most notes also have one part-of-speech tag, which is handy for narrowing a search (for example, only the verbs in a chapter). A few notes have no part-of-speech tag; the <code>partofspeech</code> field on the note still shows it.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Tag</th><th>Tag</th><th>Tag</th></tr></thead>
+  <tbody>
+    <tr><td><code>GNT::POS::Adjective</code></td><td><code>GNT::POS::Adverb</code></td><td><code>GNT::POS::Conjunction</code></td></tr>
+    <tr><td><code>GNT::POS::Noun</code></td><td><code>GNT::POS::Particle</code></td><td><code>GNT::POS::Preposition</code></td></tr>
+    <tr><td><code>GNT::POS::Pronoun</code></td><td><code>GNT::POS::ProperNoun</code></td><td><code>GNT::POS::Verb</code></td></tr>
+  </tbody>
+</table>
+</div>
+
+
+<h2 id="searching">5. Searching with tags</h2>
+
+<h3>Clicking in the browser sidebar</h3>
+<p>Open <strong>Browse</strong> in Anki. In the sidebar, expand <strong>Tags → GNT</strong>. You will see <code>freq</code>, <code>Book</code>, and <code>POS</code>. Expand a family and click any tag to show its cards. Clicking a book shows every word in that book; expanding it lets you click a single chapter.</p>
+
+<h3>Typing a search</h3>
+<p>Type searches into the search bar at the top of the browser. Include the deck so you don’t match other decks that may share these tags:</p>
+<pre><code>"deck:NT Greek (By Freq or Chap)" tag:GNT::freq::A*</code></pre>
+
+<p>The rules that matter for this deck:</p>
+<ul>
+  <li><strong>The deck name goes in quotes</strong> (it contains spaces and parentheses). Quoting the whole term, <code>"deck:NT Greek (By Freq or Chap)"</code>, works.</li>
+  <li><strong>A parent tag matches all its children.</strong> <code>tag:GNT::Book::04:Jn</code> finds every chapter of John.</li>
+  <li><strong><code>*</code> is a wildcard.</strong> <code>tag:GNT::freq::A*</code> is a handy shorthand for the tier tag <code>GNT::freq::A:50+</code> so you don’t have to type the range.</li>
+  <li><strong>Spaces mean AND.</strong> <code>tag:X tag:Y</code> finds notes with both tags.</li>
+  <li><strong><code>OR</code> means either</strong>, and needs parentheses when combined with other terms: <code>(tag:X OR tag:Y)</code>.</li>
+  <li><strong>A leading <code>-</code> means NOT.</strong> <code>-tag:GNT::freq::A*</code> excludes tier A.</li>
+</ul>
+
+
+<h2 id="recipes">6. Search recipes</h2>
+<p>Copy any of these into the Anki browser search bar or into a filtered deck’s search box. Use the <strong>Copy</strong> button on each box.</p>
+
+<h3>By frequency</h3>
+<p><strong>The most common words</strong> (50 or more occurrences):</p>
+<pre><code>"deck:NT Greek (By Freq or Chap)" tag:GNT::freq::A*</code></pre>
+
+<p><strong>Every word that occurs 10 or more times</strong> (tiers A–D):</p>
+<pre><code>"deck:NT Greek (By Freq or Chap)" (tag:GNT::freq::A* OR tag:GNT::freq::B* OR tag:GNT::freq::C* OR tag:GNT::freq::D*)</code></pre>
+
+<p><strong>Words that occur only once</strong>:</p>
+<pre><code>"deck:NT Greek (By Freq or Chap)" tag:GNT::freq::K*</code></pre>
+
+<h3>By chapter or book</h3>
+<p><strong>Every word in John 3</strong>:</p>
+<pre><code>"deck:NT Greek (By Freq or Chap)" tag:GNT::Book::04:Jn::03</code></pre>
+
+<p><strong>Every word in 1 John</strong>:</p>
+<pre><code>"deck:NT Greek (By Freq or Chap)" tag:GNT::Book::01:1J</code></pre>
+
+<p><strong>A run of chapters</strong> (Romans 5–8) — list each chapter with <code>OR</code>:</p>
+<pre><code>"deck:NT Greek (By Freq or Chap)" (tag:GNT::Book::12:Rom::05 OR tag:GNT::Book::12:Rom::06 OR tag:GNT::Book::12:Rom::07 OR tag:GNT::Book::12:Rom::08)</code></pre>
+
+<p><strong>Vocabulary shared by two books</strong> (words that appear in both John and 1 John):</p>
+<pre><code>"deck:NT Greek (By Freq or Chap)" tag:GNT::Book::04:Jn tag:GNT::Book::01:1J</code></pre>
+
+<h3>Combining frequency and chapter</h3>
+<p><strong>The rare words in a chapter</strong> — Philemon words that occur only once or twice (tiers J and K):</p>
+<pre><code>"deck:NT Greek (By Freq or Chap)" tag:GNT::Book::05:Phlm (tag:GNT::freq::J* OR tag:GNT::freq::K*)</code></pre>
+
+<p><strong>The words in a chapter you haven’t learned yet, excluding the most common ones</strong> — new cards from Mark 1 that occur fewer than 10 times:</p>
+<pre><code>"deck:NT Greek (By Freq or Chap)" tag:GNT::Book::10:Mk::01 is:new -tag:GNT::freq::A* -tag:GNT::freq::B* -tag:GNT::freq::C* -tag:GNT::freq::D*</code></pre>
+
+<h3>Adding part of speech</h3>
+<p><strong>Every verb in Jude</strong>:</p>
+<pre><code>"deck:NT Greek (By Freq or Chap)" tag:GNT::Book::24:Jud tag:GNT::POS::Verb</code></pre>
+
+
+<h2 id="filtered">7. Studying with filtered decks</h2>
+<p>Searches become most useful when you turn them into a <strong>filtered deck</strong>, which temporarily gathers matching cards into a study deck.</p>
+<p>Ready-made names and searches for every chapter and every frequency tier are on the <a href="#deck-names">Filtered decks tab</a>.</p>
+<ol>
+  <li>In the main Anki window choose <strong>Tools → Create Filtered Deck…</strong>.</li>
+  <li>Give it a name (for example “John 3 – rare words”).</li>
+  <li>Paste one of the search recipes above into the <strong>Search</strong> box.</li>
+  <li>Set a <strong>Limit</strong> (how many cards to pull in) and choose an order.</li>
+  <li>Click <strong>Build</strong> and study as usual. When you’re finished, empty or delete the filtered deck and the cards return to their home deck with their scheduling intact.</li>
+</ol>
+
+<h3>Three ways to use the tags</h3>
+<ul>
+  <li><strong>Frequency-first.</strong> Work down the tiers: master A, then B, and so on. High-frequency words give you the most reading coverage per card learned.</li>
+  <li><strong>Reading-first.</strong> Before reading a passage, build a filtered deck for that chapter (adding <code>is:new</code> to skip words you already know). You meet the vocabulary just before you need it.</li>
+  <li><strong>Hybrid.</strong> Combine the two: for a chapter you’re about to read, exclude the very common words you’ve already learned, and focus on the tiers you haven’t reached yet.</li>
+</ul>
+
+
+<h2 id="tips">8. Tips and cautions</h2>
+<ul>
+  <li><strong>Don’t rename or delete the tags.</strong> Because they are hierarchical, renaming a parent in the sidebar renames all of its children, which will break the searches in this guide.</li>
+  <li><strong>Filtered decks skip some cards.</strong> Anki does not pull suspended or buried cards, or cards already sitting in another filtered deck, into a new filtered deck.</li>
+  <li><strong>Sort order in the sidebar.</strong> Books appear in study order (<code>01</code>–<code>27</code>), not in canonical Bible order. Use the <a href="#chapters">book code table</a> to find a book.</li>
+  <li><strong>Use a current version of Anki.</strong> The tag tree in the browser sidebar and parent-tag searching rely on Anki’s hierarchical tag support.</li>
+  <li><strong>Include the deck in your search.</strong> If you have other decks that use <code>GNT::</code> tags, the deck filter keeps results limited to this deck.</li>
+</ul>
+
+</section>
+
+<section id="deck-names" class="panel" role="tabpanel" aria-labelledby="tab-decks">
+
+<h2>Filtered deck names and searches</h2>
+<p>Every chapter of the New Testament and every frequency tier, ready to paste into Anki&rsquo;s filtered deck dialog. Use the <strong>Copy</strong> button in a cell, or select the text yourself.</p>
+
+<ol>
+  <li>In Anki&rsquo;s main window choose <strong>Tools &rarr; Create Filtered Deck&hellip;</strong></li>
+  <li>Paste the <strong>Name</strong> into the name box.</li>
+  <li>Paste the <strong>Search</strong> into the search box.</li>
+  <li>Raise the <strong>Limit</strong> (the default is 100 cards) so the deck takes every matching card, for example 9999.</li>
+  <li>Click <strong>Build</strong>.</li>
+</ol>
+
+<div class="note">
+  <p><strong>A card can sit in only one filtered deck at a time.</strong> Chapters share many words, so a card already pulled into one filtered deck is skipped when you build another. Study one chapter at a time and empty its filtered deck when you finish.</p>
+  <p><strong>Names.</strong> The <code>::</code> nests the filtered deck under the parent name before it. The number after <em>NT Greek</em> is the book&rsquo;s tag number, so the decks sort in study order. Chapter numbers have two digits in books with 10 or more chapters, so Anki sorts them correctly.</p>
+  <p><strong>What the searches include.</strong> Each search takes only cards that are new, due, or in learning, so cards scheduled for a later day stay in their home deck. To narrow a search further, add terms to the end, such as <code>-tag:GNT::freq::A*</code> to leave out the most common words.</p>
+</div>
+
+<h3 id="decks-frequency">By frequency</h3>
+<div class="table-wrap">
+<table class="deck-table">
+<thead><tr><th>Name</th><th>Search</th></tr></thead>
+<tbody>
+<tr><td class="cp"><code>NT Greek: Instances 50+</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::freq::A:50+</code></td></tr>
+<tr><td class="cp"><code>NT Greek: Instances 49-20</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::freq::B:49-20</code></td></tr>
+<tr><td class="cp"><code>NT Greek: Instances 19-13</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::freq::C:19-13</code></td></tr>
+<tr><td class="cp"><code>NT Greek: Instances 12-10</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::freq::D:12-10</code></td></tr>
+<tr><td class="cp"><code>NT Greek: Instances 9-8</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::freq::E:9-8</code></td></tr>
+<tr><td class="cp"><code>NT Greek: Instances 7-6</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::freq::F:7-6</code></td></tr>
+<tr><td class="cp"><code>NT Greek: Instances 5</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::freq::G:5</code></td></tr>
+<tr><td class="cp"><code>NT Greek: Instances 4</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::freq::H:4</code></td></tr>
+<tr><td class="cp"><code>NT Greek: Instances 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::freq::I:3</code></td></tr>
+<tr><td class="cp"><code>NT Greek: Instances 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::freq::J:2</code></td></tr>
+<tr><td class="cp"><code>NT Greek: Instances 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::freq::K:1</code></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 id="decks-chapters">By chapter</h3>
+<p><input type="search" id="deck-filter" placeholder="Filter chapters, e.g. John 3 or Romans" aria-label="Filter chapters"></p>
+<div class="table-wrap">
+<table class="deck-table" id="chapter-table">
+<thead><tr><th>Name</th><th>Search</th></tr></thead>
+<tbody>
+<tr class="group"><th colspan="2">01 &middot; 1 John <span>5 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 01: 1 John::1 John 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::01:1J::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 01: 1 John::1 John 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::01:1J::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 01: 1 John::1 John 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::01:1J::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 01: 1 John::1 John 4</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::01:1J::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 01: 1 John::1 John 5</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::01:1J::05</code></td></tr>
+<tr class="group"><th colspan="2">02 &middot; 2 John <span>1 chapter</span></th></tr>
+<tr><td class="cp"><code>NT Greek 02: 2 John::2 John 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::02:2J::01</code></td></tr>
+<tr class="group"><th colspan="2">03 &middot; 3 John <span>1 chapter</span></th></tr>
+<tr><td class="cp"><code>NT Greek 03: 3 John::3 John 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::03:3J::01</code></td></tr>
+<tr class="group"><th colspan="2">04 &middot; John <span>21 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 01</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 02</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 03</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 04</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 05</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::05</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 06</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::06</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 07</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::07</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 08</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::08</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 09</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::09</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 10</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::10</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 11</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::11</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 12</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::12</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 13</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::13</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 14</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::14</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 15</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::15</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 16</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::16</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 17</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::17</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 18</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::18</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 19</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::19</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 20</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::20</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 21</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::21</code></td></tr>
+<tr class="group"><th colspan="2">05 &middot; Philemon <span>1 chapter</span></th></tr>
+<tr><td class="cp"><code>NT Greek 05: Philemon::Philemon 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::05:Phlm::01</code></td></tr>
+<tr class="group"><th colspan="2">06 &middot; Revelation <span>22 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 01</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 02</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 03</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 04</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 05</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::05</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 06</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::06</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 07</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::07</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 08</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::08</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 09</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::09</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 10</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::10</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 11</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::11</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 12</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::12</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 13</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::13</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 14</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::14</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 15</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::15</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 16</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::16</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 17</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::17</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 18</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::18</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 19</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::19</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 20</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::20</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 21</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::21</code></td></tr>
+<tr><td class="cp"><code>NT Greek 06: Revelation::Revelation 22</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::06:Rev::22</code></td></tr>
+<tr class="group"><th colspan="2">07 &middot; 1 Thessalonians <span>5 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 07: 1 Thessalonians::1 Thessalonians 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::07:1Th::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 07: 1 Thessalonians::1 Thessalonians 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::07:1Th::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 07: 1 Thessalonians::1 Thessalonians 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::07:1Th::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 07: 1 Thessalonians::1 Thessalonians 4</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::07:1Th::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 07: 1 Thessalonians::1 Thessalonians 5</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::07:1Th::05</code></td></tr>
+<tr class="group"><th colspan="2">08 &middot; 2 Thessalonians <span>3 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 08: 2 Thessalonians::2 Thessalonians 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::08:2Th::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 08: 2 Thessalonians::2 Thessalonians 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::08:2Th::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 08: 2 Thessalonians::2 Thessalonians 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::08:2Th::03</code></td></tr>
+<tr class="group"><th colspan="2">09 &middot; Philippians <span>4 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 09: Philippians::Philippians 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::09:Php::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 09: Philippians::Philippians 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::09:Php::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 09: Philippians::Philippians 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::09:Php::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 09: Philippians::Philippians 4</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::09:Php::04</code></td></tr>
+<tr class="group"><th colspan="2">10 &middot; Mark <span>16 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 01</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 02</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 03</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 04</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 05</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::05</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 06</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::06</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 07</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::07</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 08</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::08</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 09</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::09</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 10</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::10</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 11</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::11</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 12</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::12</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 13</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::13</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 14</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::14</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 15</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::15</code></td></tr>
+<tr><td class="cp"><code>NT Greek 10: Mark::Mark 16</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::10:Mk::16</code></td></tr>
+<tr class="group"><th colspan="2">11 &middot; Matthew <span>28 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 01</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 02</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 03</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 04</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 05</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::05</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 06</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::06</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 07</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::07</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 08</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::08</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 09</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::09</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 10</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::10</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 11</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::11</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 12</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::12</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 13</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::13</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 14</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::14</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 15</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::15</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 16</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::16</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 17</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::17</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 18</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::18</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 19</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::19</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 20</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::20</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 21</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::21</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 22</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::22</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 23</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::23</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 24</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::24</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 25</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::25</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 26</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::26</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 27</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::27</code></td></tr>
+<tr><td class="cp"><code>NT Greek 11: Matthew::Matthew 28</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::11:Mt::28</code></td></tr>
+<tr class="group"><th colspan="2">12 &middot; Romans <span>16 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 01</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 02</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 03</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 04</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 05</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::05</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 06</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::06</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 07</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::07</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 08</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::08</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 09</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::09</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 10</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::10</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 11</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::11</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 12</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::12</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 13</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::13</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 14</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::14</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 15</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::15</code></td></tr>
+<tr><td class="cp"><code>NT Greek 12: Romans::Romans 16</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::12:Rom::16</code></td></tr>
+<tr class="group"><th colspan="2">13 &middot; Ephesians <span>6 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 13: Ephesians::Ephesians 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::13:Eph::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 13: Ephesians::Ephesians 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::13:Eph::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 13: Ephesians::Ephesians 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::13:Eph::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 13: Ephesians::Ephesians 4</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::13:Eph::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 13: Ephesians::Ephesians 5</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::13:Eph::05</code></td></tr>
+<tr><td class="cp"><code>NT Greek 13: Ephesians::Ephesians 6</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::13:Eph::06</code></td></tr>
+<tr class="group"><th colspan="2">14 &middot; Colossians <span>4 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 14: Colossians::Colossians 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::14:Col::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 14: Colossians::Colossians 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::14:Col::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 14: Colossians::Colossians 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::14:Col::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 14: Colossians::Colossians 4</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::14:Col::04</code></td></tr>
+<tr class="group"><th colspan="2">15 &middot; Galatians <span>6 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 15: Galatians::Galatians 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::15:Gal::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 15: Galatians::Galatians 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::15:Gal::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 15: Galatians::Galatians 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::15:Gal::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 15: Galatians::Galatians 4</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::15:Gal::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 15: Galatians::Galatians 5</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::15:Gal::05</code></td></tr>
+<tr><td class="cp"><code>NT Greek 15: Galatians::Galatians 6</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::15:Gal::06</code></td></tr>
+<tr class="group"><th colspan="2">16 &middot; James <span>5 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 16: James::James 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::16:Jas::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 16: James::James 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::16:Jas::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 16: James::James 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::16:Jas::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 16: James::James 4</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::16:Jas::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 16: James::James 5</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::16:Jas::05</code></td></tr>
+<tr class="group"><th colspan="2">17 &middot; 1 Corinthians <span>16 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 01</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 02</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 03</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 04</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 05</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::05</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 06</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::06</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 07</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::07</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 08</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::08</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 09</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::09</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 10</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::10</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 11</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::11</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 12</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::12</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 13</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::13</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 14</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::14</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 15</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::15</code></td></tr>
+<tr><td class="cp"><code>NT Greek 17: 1 Corinthians::1 Corinthians 16</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::17:1Co::16</code></td></tr>
+<tr class="group"><th colspan="2">18 &middot; 2 Corinthians <span>13 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 18: 2 Corinthians::2 Corinthians 01</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::18:2Co::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 18: 2 Corinthians::2 Corinthians 02</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::18:2Co::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 18: 2 Corinthians::2 Corinthians 03</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::18:2Co::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 18: 2 Corinthians::2 Corinthians 04</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::18:2Co::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 18: 2 Corinthians::2 Corinthians 05</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::18:2Co::05</code></td></tr>
+<tr><td class="cp"><code>NT Greek 18: 2 Corinthians::2 Corinthians 06</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::18:2Co::06</code></td></tr>
+<tr><td class="cp"><code>NT Greek 18: 2 Corinthians::2 Corinthians 07</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::18:2Co::07</code></td></tr>
+<tr><td class="cp"><code>NT Greek 18: 2 Corinthians::2 Corinthians 08</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::18:2Co::08</code></td></tr>
+<tr><td class="cp"><code>NT Greek 18: 2 Corinthians::2 Corinthians 09</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::18:2Co::09</code></td></tr>
+<tr><td class="cp"><code>NT Greek 18: 2 Corinthians::2 Corinthians 10</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::18:2Co::10</code></td></tr>
+<tr><td class="cp"><code>NT Greek 18: 2 Corinthians::2 Corinthians 11</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::18:2Co::11</code></td></tr>
+<tr><td class="cp"><code>NT Greek 18: 2 Corinthians::2 Corinthians 12</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::18:2Co::12</code></td></tr>
+<tr><td class="cp"><code>NT Greek 18: 2 Corinthians::2 Corinthians 13</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::18:2Co::13</code></td></tr>
+<tr class="group"><th colspan="2">19 &middot; 1 Timothy <span>6 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 19: 1 Timothy::1 Timothy 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::19:1Ti::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 19: 1 Timothy::1 Timothy 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::19:1Ti::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 19: 1 Timothy::1 Timothy 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::19:1Ti::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 19: 1 Timothy::1 Timothy 4</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::19:1Ti::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 19: 1 Timothy::1 Timothy 5</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::19:1Ti::05</code></td></tr>
+<tr><td class="cp"><code>NT Greek 19: 1 Timothy::1 Timothy 6</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::19:1Ti::06</code></td></tr>
+<tr class="group"><th colspan="2">20 &middot; 2 Timothy <span>4 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 20: 2 Timothy::2 Timothy 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::20:2Ti::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 20: 2 Timothy::2 Timothy 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::20:2Ti::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 20: 2 Timothy::2 Timothy 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::20:2Ti::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 20: 2 Timothy::2 Timothy 4</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::20:2Ti::04</code></td></tr>
+<tr class="group"><th colspan="2">21 &middot; Titus <span>3 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 21: Titus::Titus 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::21:Tit::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 21: Titus::Titus 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::21:Tit::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 21: Titus::Titus 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::21:Tit::03</code></td></tr>
+<tr class="group"><th colspan="2">22 &middot; 1 Peter <span>5 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 22: 1 Peter::1 Peter 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::22:1Pe::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 22: 1 Peter::1 Peter 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::22:1Pe::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 22: 1 Peter::1 Peter 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::22:1Pe::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 22: 1 Peter::1 Peter 4</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::22:1Pe::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 22: 1 Peter::1 Peter 5</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::22:1Pe::05</code></td></tr>
+<tr class="group"><th colspan="2">23 &middot; 2 Peter <span>3 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 23: 2 Peter::2 Peter 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::23:2Pe::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 23: 2 Peter::2 Peter 2</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::23:2Pe::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 23: 2 Peter::2 Peter 3</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::23:2Pe::03</code></td></tr>
+<tr class="group"><th colspan="2">24 &middot; Jude <span>1 chapter</span></th></tr>
+<tr><td class="cp"><code>NT Greek 24: Jude::Jude 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::24:Jud::01</code></td></tr>
+<tr class="group"><th colspan="2">25 &middot; Luke <span>24 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 01</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 02</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 03</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 04</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 05</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::05</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 06</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::06</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 07</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::07</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 08</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::08</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 09</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::09</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 10</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::10</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 11</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::11</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 12</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::12</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 13</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::13</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 14</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::14</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 15</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::15</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 16</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::16</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 17</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::17</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 18</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::18</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 19</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::19</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 20</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::20</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 21</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::21</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 22</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::22</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 23</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::23</code></td></tr>
+<tr><td class="cp"><code>NT Greek 25: Luke::Luke 24</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::25:Lk::24</code></td></tr>
+<tr class="group"><th colspan="2">26 &middot; Acts <span>28 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 01</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 02</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 03</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 04</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 05</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::05</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 06</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::06</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 07</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::07</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 08</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::08</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 09</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::09</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 10</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::10</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 11</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::11</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 12</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::12</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 13</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::13</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 14</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::14</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 15</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::15</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 16</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::16</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 17</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::17</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 18</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::18</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 19</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::19</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 20</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::20</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 21</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::21</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 22</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::22</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 23</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::23</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 24</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::24</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 25</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::25</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 26</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::26</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 27</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::27</code></td></tr>
+<tr><td class="cp"><code>NT Greek 26: Acts::Acts 28</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::26:Ac::28</code></td></tr>
+<tr class="group"><th colspan="2">27 &middot; Hebrews <span>13 chapters</span></th></tr>
+<tr><td class="cp"><code>NT Greek 27: Hebrews::Hebrews 01</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::27:Heb::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 27: Hebrews::Hebrews 02</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::27:Heb::02</code></td></tr>
+<tr><td class="cp"><code>NT Greek 27: Hebrews::Hebrews 03</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::27:Heb::03</code></td></tr>
+<tr><td class="cp"><code>NT Greek 27: Hebrews::Hebrews 04</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::27:Heb::04</code></td></tr>
+<tr><td class="cp"><code>NT Greek 27: Hebrews::Hebrews 05</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::27:Heb::05</code></td></tr>
+<tr><td class="cp"><code>NT Greek 27: Hebrews::Hebrews 06</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::27:Heb::06</code></td></tr>
+<tr><td class="cp"><code>NT Greek 27: Hebrews::Hebrews 07</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::27:Heb::07</code></td></tr>
+<tr><td class="cp"><code>NT Greek 27: Hebrews::Hebrews 08</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::27:Heb::08</code></td></tr>
+<tr><td class="cp"><code>NT Greek 27: Hebrews::Hebrews 09</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::27:Heb::09</code></td></tr>
+<tr><td class="cp"><code>NT Greek 27: Hebrews::Hebrews 10</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::27:Heb::10</code></td></tr>
+<tr><td class="cp"><code>NT Greek 27: Hebrews::Hebrews 11</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::27:Heb::11</code></td></tr>
+<tr><td class="cp"><code>NT Greek 27: Hebrews::Hebrews 12</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::27:Heb::12</code></td></tr>
+<tr><td class="cp"><code>NT Greek 27: Hebrews::Hebrews 13</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::27:Heb::13</code></td></tr>
+</tbody>
+</table>
+</div>
+
+</section>
+
+<footer>
+  Guide for the Anki deck <strong>NT Greek (By Freq or Chap)</strong>. Tag names were taken directly from the deck.
+</footer>
+
+</main>
+
+<script>
+  (function () {
+    function copyText(text, btn) {
+      var done = function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy'; }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () {});
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+    }
+
+    function addButton(parent) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'copy';
+      btn.textContent = 'Copy';
+      parent.appendChild(btn);
+      return btn;
+    }
+
+    // Copy buttons on the guide's search boxes
+    document.querySelectorAll('pre').forEach(function (pre) {
+      addButton(pre).addEventListener('click', function (e) {
+        copyText(pre.querySelector('code').textContent, e.currentTarget);
+      });
+    });
+
+    // Copy buttons on the filtered deck tables (Name and Search cells)
+    document.querySelectorAll('td.cp').forEach(function (td) {
+      addButton(td).addEventListener('click', function (e) {
+        copyText(td.querySelector('code').textContent, e.currentTarget);
+      });
+    });
+
+    // Filter box for the chapter table
+    var filter = document.getElementById('deck-filter');
+    if (filter) {
+      filter.addEventListener('input', function () {
+        var q = filter.value.trim().toLowerCase();
+        document.querySelectorAll('#chapter-table tbody tr').forEach(function (tr) {
+          if (tr.classList.contains('group')) { tr.hidden = q !== ''; return; }
+          tr.hidden = q !== '' && tr.cells[0].textContent.toLowerCase().indexOf(q) === -1;
+        });
+      });
+    }
+
+    // Tabs
+    var bar = document.querySelector('.tabs');
+    var tabs = [].slice.call(document.querySelectorAll('.tabs [role="tab"]'));
+    var panels = { 'guide': document.getElementById('guide'), 'deck-names': document.getElementById('deck-names') };
+
+    function show(id) {
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', String(t.getAttribute('data-panel') === id)); });
+      Object.keys(panels).forEach(function (k) { panels[k].hidden = (k !== id); });
+    }
+
+    function route() {
+      var h = decodeURIComponent(location.hash.slice(1));
+      var el = h ? document.getElementById(h) : null;
+      var inDecks = el && (el === panels['deck-names'] || panels['deck-names'].contains(el));
+      show(inDecks ? 'deck-names' : 'guide');
+      if (el) {
+        var isPanel = (el === panels['guide'] || el === panels['deck-names']);
+        (isPanel ? bar : el).scrollIntoView();
+      }
+    }
+
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        var id = t.getAttribute('data-panel');
+        show(id);
+        history.replaceState(null, '', '#' + id);
+      });
+    });
+    window.addEventListener('hashchange', route);
+    route();
+  })();
+</script>
+</body>
+</html>
