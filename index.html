@@ -7,26 +7,16 @@
 <title>NT Greek (By Freq or Chap) — Tag Guide for Anki</title>
 <style>
   :root {
-    --bg: #fbfaf7;
-    --fg: #23211d;
-    --muted: #6b665d;
-    --accent: #7a3e1d;
-    --accent-soft: #f1e6dc;
-    --border: #ddd6ca;
-    --code-bg: #f3efe7;
-    --code-fg: #2d2a25;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1a1917;
-      --fg: #e9e5dc;
-      --muted: #a29b8d;
-      --accent: #e0a172;
-      --accent-soft: #2b241e;
-      --border: #3a362f;
-      --code-bg: #24221f;
-      --code-fg: #eadfcf;
-    }
+    color-scheme: light;
+    --bg: #ffffff;
+    --fg: #1f2d3d;
+    --muted: #5b6b7d;
+    --accent: #2563a8;
+    --accent-soft: #e6f0fa;
+    --hover: #f1f7fd;
+    --border: #cfe0f1;
+    --code-bg: #f1f6fc;
+    --code-fg: #1b3a5c;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -99,12 +89,9 @@
   }
   .note p { margin: .3rem 0; }
   .anatomy code { font-size: .95rem; }
-  .part-a { color: #b04a1c; font-weight: 700; }
-  .part-b { color: #1c6ab0; font-weight: 700; }
-  .part-c { color: #2f8a4a; font-weight: 700; }
-  @media (prefers-color-scheme: dark) {
-    .part-a { color: #f0a06f; } .part-b { color: #79b4ee; } .part-c { color: #7dcf96; }
-  }
+  .part-a { color: #1d4f91; font-weight: 700; }
+  .part-b { color: #0f7b8a; font-weight: 700; }
+  .part-c { color: #6a4fb3; font-weight: 700; }
   footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); color: var(--muted); font-size: .9rem; }
 
   /* ---- tabs ---- */
@@ -116,14 +103,15 @@
     color: var(--muted); background: none; border: 0; border-bottom: 3px solid transparent;
     margin-bottom: -2px; padding: .75rem 1.1rem; cursor: pointer;
   }
-  .tabs button:hover { color: var(--fg); }
-  .tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+  .tabs button:hover { color: var(--fg); background: var(--hover); border-radius: 6px 6px 0 0; }
+  .tabs button[aria-selected="true"] { color: var(--accent); background: var(--accent-soft); border-radius: 6px 6px 0 0; border-bottom-color: var(--accent); }
   .panel > h2:first-child { border-top: 0; margin-top: 1.6rem; }
   /* ---- filtered deck tables ---- */
   .deck-table th:first-child { width: 36%; }
   .deck-table td code { white-space: normal; word-break: break-word; }
   .deck-table .copy { position: static; margin-left: .5rem; vertical-align: middle; user-select: none; }
   .deck-table tr.group th { background: var(--accent-soft); color: var(--accent); }
+  .deck-table tbody tr:not(.group):hover td { background: var(--hover); }
   .deck-table tr.group th span { color: var(--muted); font-weight: 400; margin-left: .4rem; }
   #deck-filter {
     width: 100%; max-width: 28rem; padding: .55rem .8rem; font: inherit; font-size: .95rem;

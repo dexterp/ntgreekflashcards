@@ -1,5 +1,16 @@
 # Release notes
 
+## 1.2.0
+
+Changes the colour scheme.
+
+### Changes
+
+- The site now has a white background with a pastel blue scheme: pale blue panels, table headers and code boxes, blue links and buttons, and a pastel highlight on the active tab. Rows in the Filtered decks tables get a faint tint when you hover over them.
+- The tag breakdown examples in the Tag guide use blue, teal and violet.
+- All text and background pairs meet the WCAG AA contrast ratio of 4.5:1.
+- Dark mode is removed. The page is always light, even when the visitor's device is set to dark.
+
 ## 1.1.1
 
 Reorders the tabs.
