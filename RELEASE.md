@@ -1,5 +1,13 @@
 # Release notes
 
+## 1.3.0
+
+Changes the Limit advice in the Quickstart.
+
+### Changes
+
+- Quickstart step 3 now tells readers to review the Limit and change it as desired, instead of telling them to set it to 9999. It still mentions that Anki's default of 100 cards would cut the deck short.
+
 ## 1.2.0
 
 Changes the colour scheme.
