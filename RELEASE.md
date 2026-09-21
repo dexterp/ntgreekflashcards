@@ -1,5 +1,16 @@
 # Release notes
 
+## 1.1.1
+
+Reorders the tabs.
+
+### Changes
+
+- The tabs now run **Quickstart**, **Filtered decks**, **Tag guide**. The page still opens on the Quickstart.
+- The sections in the page follow the same order, so the content reads the same way if JavaScript is off.
+- Links are unchanged: `#quickstart`, `#deck-names` and `#guide` still open their tabs, and section links such as `#frequency` still open the Tag guide.
+- `README.md` lists the tabs in the new order.
+
 ## 1.1.0
 
 Adds a Quickstart tab to the tag guide.

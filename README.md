@@ -11,14 +11,14 @@ The guide is one self-contained page, `index.html`, with three tabs. It opens on
 
 **Quickstart** takes a new user from the deck to a working filtered deck in five steps, with three copy-ready examples to start with.
 
+**Filtered decks** has copy-and-paste **Name** and **Search** pairs for a filtered deck of every chapter and every frequency tier. Each search takes only cards that are new, due, or in learning. There is a filter box for the chapter table and a Copy button on every cell.
+
 **Tag guide** explains how the deck's tags work and how to search with them:
 
 - **Frequency tags**, `GNT::freq::…`: 11 tiers, from `A:50+` (50 or more occurrences) down to `K:1` (occurs once).
 - **Chapter tags**, for example `GNT::Book::04:Jn::03` (John 3): every chapter a lemma appears in is tagged, across all 260 chapters of the 27 books, which are numbered in study order rather than Bible order.
 - **Part-of-speech tags**, `GNT::POS::…`.
 - Anki search syntax, ready-made search recipes, and tips for studying with filtered decks.
-
-**Filtered decks** has copy-and-paste **Name** and **Search** pairs for a filtered deck of every chapter and every frequency tier. Each search takes only cards that are new, due, or in learning. There is a filter box for the chapter table and a Copy button on every cell.
 
 ## Repository layout
 
