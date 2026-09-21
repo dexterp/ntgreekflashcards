@@ -1,5 +1,21 @@
 # Release notes
 
+## 1.1.0
+
+Adds a Quickstart tab to the tag guide.
+
+### Quickstart tab
+
+- A new first tab, **Quickstart**, takes a new user from the deck to a working filtered deck in five steps: get the deck from AnkiWeb, pick a row on the Filtered decks tab, create the filtered deck in Anki (Tools → Create Filtered Deck…, paste the Name and Search, set the Limit to 9999, Build), study, then empty it and move on.
+- Three copy-ready Name and Search pairs to start with: the most common words (`NT Greek: Instances 50+`), John 1 (`NT Greek 04: John::John 01`) and 1 John 1 (`NT Greek 01: 1 John::1 John 1`). They use the same searches as the Filtered decks tab, with a Copy button on every cell.
+- Explains the two things that most often surprise people: a filtered deck can build small or even empty, because each search takes only new, due and learning cards, and a card can sit in only one filtered deck at a time.
+- Links on to the Filtered decks tab and the Tag guide, and the Filtered decks tab now links back to the Quickstart.
+
+### Changes
+
+- The site now opens on the Quickstart tab instead of the Tag guide. Existing links still work: `#deck-names` opens the Filtered decks tab, and section links such as `#frequency` open the Tag guide. `#quickstart` opens the Quickstart tab.
+- The tab script now handles three panels instead of two.
+
 ## 1.0.0
 
 First release of the tag guide for the Anki deck **NT Greek (By Freq or Chap)**, together with the tooling that publishes it to GitHub Pages.

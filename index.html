@@ -138,9 +138,63 @@
 <p class="lede">A guide to the tags in <a href="https://ankiweb.net/shared/info/1482865541">this Anki deck</a> — how to find, group, and study New Testament Greek vocabulary by <em>how often</em> a word occurs or by <em>where</em> it occurs.</p>
 
 <div class="tabs" role="tablist" aria-label="Sections">
-  <button type="button" role="tab" id="tab-guide" data-panel="guide" aria-controls="guide" aria-selected="true">Tag guide</button>
+  <button type="button" role="tab" id="tab-quickstart" data-panel="quickstart" aria-controls="quickstart" aria-selected="true">Quickstart</button>
+  <button type="button" role="tab" id="tab-guide" data-panel="guide" aria-controls="guide" aria-selected="false">Tag guide</button>
   <button type="button" role="tab" id="tab-decks" data-panel="deck-names" aria-controls="deck-names" aria-selected="false">Filtered decks</button>
 </div>
+
+<section id="quickstart" class="panel" role="tabpanel" aria-labelledby="tab-quickstart">
+
+<h2>Quickstart: your first filtered deck</h2>
+<p>Study exactly the words you need &mdash; the vocabulary of the chapter you are about to read, or the most common words first &mdash; by pasting one name and one search into Anki. It takes about two minutes.</p>
+
+<h3>1. Get the deck</h3>
+<p>Download <a href="https://ankiweb.net/shared/info/1482865541">NT Greek (By Freq or Chap)</a> from AnkiWeb and open the file in Anki, or use <strong>File &rarr; Import</strong>.</p>
+
+<h3>2. Pick a row</h3>
+<p>The <a href="#deck-names">Filtered decks</a> tab has a <strong>Name</strong> and a <strong>Search</strong> for every chapter and every frequency tier. Choose one:</p>
+<ul>
+  <li><strong>To read a chapter:</strong> find it in the <em>By chapter</em> table. Type something like <code>John 3</code> in the filter box.</li>
+  <li><strong>To build vocabulary:</strong> start with the most common words in the <em>By frequency</em> table (<code>Instances 50+</code>) and work down.</li>
+</ul>
+<p>Or try one of these to begin with:</p>
+<div class="table-wrap">
+<table class="deck-table">
+<thead><tr><th>Name</th><th>Search</th></tr></thead>
+<tbody>
+<tr><td class="cp"><code>NT Greek: Instances 50+</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::freq::A:50+</code></td></tr>
+<tr><td class="cp"><code>NT Greek 04: John::John 01</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::04:Jn::01</code></td></tr>
+<tr><td class="cp"><code>NT Greek 01: 1 John::1 John 1</code></td><td class="cp"><code>"deck:NT Greek (By Freq or Chap)" (is:new OR is:due OR is:learn) tag:GNT::Book::01:1J::01</code></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>3. Create the filtered deck in Anki</h3>
+<ol>
+  <li>In Anki&rsquo;s main window choose <strong>Tools &rarr; Create Filtered Deck&hellip;</strong></li>
+  <li>Paste the <strong>Name</strong> into the name box and the <strong>Search</strong> into the search box.</li>
+  <li>Set the <strong>Limit</strong> to 9999. The default of 100 cards would cut the deck short.</li>
+  <li>Click <strong>Build</strong>.</li>
+</ol>
+
+<h3>4. Study</h3>
+<p>Click the new filtered deck in Anki&rsquo;s deck list and study as usual.</p>
+
+<h3>5. Empty it and move on</h3>
+<p>When you finish, open the filtered deck and click <strong>Empty</strong>. The cards return to their home deck. Then build the next one.</p>
+
+<div class="note">
+  <p><strong>Empty or very small deck?</strong> Each search takes only cards that are new, due, or in learning, so cards scheduled for a later day stay where they are. A filtered deck can build small, or even empty, when few cards are due. That is expected.</p>
+  <p><strong>One filtered deck at a time.</strong> A card can sit in only one filtered deck, and chapters share many words. Empty one filtered deck before you build the next, or the shared words will be missing.</p>
+</div>
+
+<h3>Where next</h3>
+<ul>
+  <li><a href="#deck-names">Filtered decks</a>: the full list of names and searches.</li>
+  <li><a href="#guide">Tag guide</a>: how the tags work and how to write your own searches.</li>
+</ul>
+
+</section>
 
 <section id="guide" class="panel" role="tabpanel" aria-labelledby="tab-guide">
 
@@ -377,7 +431,7 @@ GNT::POS::ProperNoun</code></pre>
 <section id="deck-names" class="panel" role="tabpanel" aria-labelledby="tab-decks">
 
 <h2>Filtered deck names and searches</h2>
-<p>Every chapter of the New Testament and every frequency tier, ready to paste into Anki&rsquo;s filtered deck dialog. Use the <strong>Copy</strong> button in a cell, or select the text yourself.</p>
+<p>Every chapter of the New Testament and every frequency tier, ready to paste into Anki&rsquo;s filtered deck dialog. Use the <strong>Copy</strong> button in a cell, or select the text yourself. New here? Start with the <a href="#quickstart">Quickstart</a>.</p>
 
 <ol>
   <li>In Anki&rsquo;s main window choose <strong>Tools &rarr; Create Filtered Deck&hellip;</strong></li>
@@ -777,22 +831,28 @@ GNT::POS::ProperNoun</code></pre>
     // Tabs
     var bar = document.querySelector('.tabs');
     var tabs = [].slice.call(document.querySelectorAll('.tabs [role="tab"]'));
-    var panels = { 'guide': document.getElementById('guide'), 'deck-names': document.getElementById('deck-names') };
+    var panelIds = ['quickstart', 'guide', 'deck-names'];
+    var panels = {};
+    panelIds.forEach(function (id) { panels[id] = document.getElementById(id); });
 
     function show(id) {
       tabs.forEach(function (t) { t.setAttribute('aria-selected', String(t.getAttribute('data-panel') === id)); });
-      Object.keys(panels).forEach(function (k) { panels[k].hidden = (k !== id); });
+      panelIds.forEach(function (k) { panels[k].hidden = (k !== id); });
     }
 
     function route() {
       var h = decodeURIComponent(location.hash.slice(1));
       var el = h ? document.getElementById(h) : null;
-      var inDecks = el && (el === panels['deck-names'] || panels['deck-names'].contains(el));
-      show(inDecks ? 'deck-names' : 'guide');
+      var current = panelIds[0];
+      var isPanel = false;
       if (el) {
-        var isPanel = (el === panels['guide'] || el === panels['deck-names']);
-        (isPanel ? bar : el).scrollIntoView();
+        panelIds.forEach(function (k) {
+          if (el === panels[k]) { current = k; isPanel = true; }
+          else if (panels[k].contains(el)) { current = k; }
+        });
       }
+      show(current);
+      if (el) { (isPanel ? bar : el).scrollIntoView(); }
     }
 
     tabs.forEach(function (t) {

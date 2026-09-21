@@ -7,7 +7,9 @@ Documentation for the Anki deck **NT Greek (By Freq or Chap)**: one card per Gre
 
 ## What the guide covers
 
-The guide is one self-contained page, `index.html`, with two tabs.
+The guide is one self-contained page, `index.html`, with three tabs. It opens on the Quickstart.
+
+**Quickstart** takes a new user from the deck to a working filtered deck in five steps, with three copy-ready examples to start with.
 
 **Tag guide** explains how the deck's tags work and how to search with them:
 
