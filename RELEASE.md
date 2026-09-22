@@ -1,5 +1,14 @@
 # Release notes
 
+## 1.4.0
+
+Adds a study-order note to the Filtered decks tab.
+
+### Changes
+
+- A new note near the top of the Filtered decks tab, above the numbered steps: start with a frequency tier such as 50+, then switch to studying chapter by chapter while reading through the Greek New Testament, since reading reinforces the vocabulary already drilled and improves retention.
+- The note explains that the books are ordered from easiest to hardest, a variation on Daniel Wallace's reading order, and links to his article.
+
 ## 1.3.0
 
 Changes the Limit advice in the Quickstart.
