@@ -1,5 +1,16 @@
 # Release notes
 
+## 1.5.0
+
+Adds Article to the part-of-speech table, adds lemma counts to the frequency table, and retitles the intro.
+
+### Changes
+
+- The part-of-speech table in the Tag guide now lists `GNT::POS::Article` alongside the other nine tags.
+- The Tag guide's part-of-speech section now says every note has one part-of-speech tag, since the three notes that lacked one (the article, Ῥήσσω, and ἐλάχιστος) have since been tagged.
+- The frequency table in the Tag guide has a new **Lemmas** column showing how many lemmas fall in each tier, from 311 in the 50+ tier to 1,914 hapax legomena, with a total of 5,385 across all eleven tiers.
+- The page's opening line now reads "A guide to using this Anki deck" instead of "A guide to the tags in this Anki deck".
+
 ## 1.4.0
 
 Adds a study-order note to the Filtered decks tab.

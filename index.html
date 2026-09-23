@@ -123,7 +123,7 @@
 <main>
 
 <h1>NT Greek (By Freq or Chap)</h1>
-<p class="lede">A guide to the tags in <a href="https://ankiweb.net/shared/info/1482865541">this Anki deck</a> — how to find, group, and study New Testament Greek vocabulary by <em>how often</em> a word occurs or by <em>where</em> it occurs.</p>
+<p class="lede">A guide to using <a href="https://ankiweb.net/shared/info/1482865541">this Anki deck</a> — how to find, group, and study New Testament Greek vocabulary by <em>how often</em> a word occurs or by <em>where</em> it occurs.</p>
 
 <div class="tabs" role="tablist" aria-label="Sections">
   <button type="button" role="tab" id="tab-quickstart" data-panel="quickstart" aria-controls="quickstart" aria-selected="true">Quickstart</button>
@@ -585,19 +585,20 @@ GNT::POS::ProperNoun</code></pre>
 
 <div class="table-wrap">
 <table>
-  <thead><tr><th>Tag</th><th>Tier</th><th>Occurrences in the NT</th></tr></thead>
+  <thead><tr><th>Tag</th><th>Tier</th><th>Occurrences in the NT</th><th>Lemmas</th></tr></thead>
   <tbody>
-    <tr><td><code>GNT::freq::A:50+</code></td><td>A</td><td>50 or more</td></tr>
-    <tr><td><code>GNT::freq::B:49-20</code></td><td>B</td><td>20 – 49</td></tr>
-    <tr><td><code>GNT::freq::C:19-13</code></td><td>C</td><td>13 – 19</td></tr>
-    <tr><td><code>GNT::freq::D:12-10</code></td><td>D</td><td>10 – 12</td></tr>
-    <tr><td><code>GNT::freq::E:9-8</code></td><td>E</td><td>8 – 9</td></tr>
-    <tr><td><code>GNT::freq::F:7-6</code></td><td>F</td><td>6 – 7</td></tr>
-    <tr><td><code>GNT::freq::G:5</code></td><td>G</td><td>exactly 5</td></tr>
-    <tr><td><code>GNT::freq::H:4</code></td><td>H</td><td>exactly 4</td></tr>
-    <tr><td><code>GNT::freq::I:3</code></td><td>I</td><td>exactly 3</td></tr>
-    <tr><td><code>GNT::freq::J:2</code></td><td>J</td><td>exactly 2</td></tr>
-    <tr><td><code>GNT::freq::K:1</code></td><td>K</td><td>exactly 1 (hapax legomena)</td></tr>
+    <tr><td><code>GNT::freq::A:50+</code></td><td>A</td><td>50 or more</td><td>311</td></tr>
+    <tr><td><code>GNT::freq::B:49-20</code></td><td>B</td><td>20 – 49</td><td>330</td></tr>
+    <tr><td><code>GNT::freq::C:19-13</code></td><td>C</td><td>13 – 19</td><td>259</td></tr>
+    <tr><td><code>GNT::freq::D:12-10</code></td><td>D</td><td>10 – 12</td><td>226</td></tr>
+    <tr><td><code>GNT::freq::E:9-8</code></td><td>E</td><td>8 – 9</td><td>218</td></tr>
+    <tr><td><code>GNT::freq::F:7-6</code></td><td>F</td><td>6 – 7</td><td>293</td></tr>
+    <tr><td><code>GNT::freq::G:5</code></td><td>G</td><td>exactly 5</td><td>228</td></tr>
+    <tr><td><code>GNT::freq::H:4</code></td><td>H</td><td>exactly 4</td><td>311</td></tr>
+    <tr><td><code>GNT::freq::I:3</code></td><td>I</td><td>exactly 3</td><td>466</td></tr>
+    <tr><td><code>GNT::freq::J:2</code></td><td>J</td><td>exactly 2</td><td>829</td></tr>
+    <tr><td><code>GNT::freq::K:1</code></td><td>K</td><td>exactly 1 (hapax legomena)</td><td>1,914</td></tr>
+    <tr><td colspan="3"><strong>Total</strong></td><td><strong>5,385</strong></td></tr>
   </tbody>
 </table>
 </div>
@@ -658,14 +659,15 @@ GNT::POS::ProperNoun</code></pre>
 
 
 <h2 id="pos">4. Part-of-speech tags</h2>
-<p>Most notes also have one part-of-speech tag, which is handy for narrowing a search (for example, only the verbs in a chapter). A few notes have no part-of-speech tag; the <code>partofspeech</code> field on the note still shows it.</p>
+<p>Every note has one part-of-speech tag, which is handy for narrowing a search (for example, only the verbs in a chapter).</p>
 <div class="table-wrap">
 <table>
   <thead><tr><th>Tag</th><th>Tag</th><th>Tag</th></tr></thead>
   <tbody>
-    <tr><td><code>GNT::POS::Adjective</code></td><td><code>GNT::POS::Adverb</code></td><td><code>GNT::POS::Conjunction</code></td></tr>
-    <tr><td><code>GNT::POS::Noun</code></td><td><code>GNT::POS::Particle</code></td><td><code>GNT::POS::Preposition</code></td></tr>
-    <tr><td><code>GNT::POS::Pronoun</code></td><td><code>GNT::POS::ProperNoun</code></td><td><code>GNT::POS::Verb</code></td></tr>
+    <tr><td><code>GNT::POS::Adjective</code></td><td><code>GNT::POS::Adverb</code></td><td><code>GNT::POS::Article</code></td></tr>
+    <tr><td><code>GNT::POS::Conjunction</code></td><td><code>GNT::POS::Noun</code></td><td><code>GNT::POS::Particle</code></td></tr>
+    <tr><td><code>GNT::POS::Preposition</code></td><td><code>GNT::POS::Pronoun</code></td><td><code>GNT::POS::ProperNoun</code></td></tr>
+    <tr><td><code>GNT::POS::Verb</code></td><td></td><td></td></tr>
   </tbody>
 </table>
 </div>
